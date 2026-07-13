@@ -1,0 +1,9 @@
+//
+// Created by georg on 04/07/2026.
+//
+
+#ifndef INTROALGEBRA_GROUPALGOS_H
+#define INTROALGEBRA_GROUPALGOS_H
+
+
+#endif //INTROALGEBRA_GROUPALGOS_H
