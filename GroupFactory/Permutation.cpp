@@ -12,7 +12,7 @@
 
 Permutation Permutation::fromCycleString(const std::string& s, size_t n)
 {
-    // Start with the identity permutation
+
     Permutation result;
     result.image.resize(n);
     std::iota(result.image.begin(), result.image.end(), 0);
@@ -21,7 +21,7 @@ Permutation Permutation::fromCycleString(const std::string& s, size_t n)
 
     while (i < s.size()) {
 
-        // Skip whitespace
+
         while (i < s.size() && std::isspace((unsigned char)s[i]))
             ++i;
 
@@ -29,15 +29,14 @@ Permutation Permutation::fromCycleString(const std::string& s, size_t n)
             break;
 
         if (s[i] != '(') {
-            ++i;      // Ignore unexpected characters
+            ++i;
             continue;
         }
 
-        ++i; // Skip '('
+        ++i;
 
         std::vector<int> cycle;
 
-        // Read one cycle
         while (true) {
 
             while (i < s.size() && std::isspace((unsigned char)s[i]))
@@ -64,9 +63,8 @@ Permutation Permutation::fromCycleString(const std::string& s, size_t n)
             cycle.push_back(num - 1);
         }
 
-        ++i; // Skip ')'
+        ++i;
 
-        // Convert this cycle into a permutation
         Permutation cyclePerm;
         cyclePerm.image.resize(n);
         std::iota(cyclePerm.image.begin(), cyclePerm.image.end(), 0);
@@ -77,9 +75,7 @@ Permutation Permutation::fromCycleString(const std::string& s, size_t n)
             }
         }
 
-        // Compose with accumulated permutation.
-        // compose(a,b) = a ∘ b, so this interprets
-        // (1 2)(1 3) as "apply (1 3) first, then (1 2)".
+        // ts composes with accumulated permutation
         result = compose(cyclePerm, result);
     }
 
@@ -123,7 +119,7 @@ std::string Permutation::toCycleString() const {
             if (!firstInCycle)
                 out << " ";
 
-            out << (current + 1); // 1-based output
+            out << (current + 1);
 
             current = image[current];
             firstInCycle = false;
@@ -135,7 +131,7 @@ std::string Permutation::toCycleString() const {
     }
 
     if (!anyCycle)
-        return "ε"; // identity permutation
+        return "ε";
 
     return out.str();
 }

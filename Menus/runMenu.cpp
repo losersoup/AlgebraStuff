@@ -7,7 +7,7 @@
 #include "selectFamMenu.h"
 #include "../GSession.h"
 
-std::unique_ptr<IGroupSession> makeSession(int choice, bool product)
+std::unique_ptr<IGroupSession> makeSession(int choice)
 {
     switch(choice)
     {
@@ -37,10 +37,15 @@ void run()
     while (true) {
 
         auto s = makeSession(selectFamily());
-        if (s == nullptr) {
-            return;
-        }
         s->createGroup();
+        while (!s->hasGroup()){
+            if (s == nullptr) {
+                return;
+            }
+            s = makeSession(selectFamily());
+            s->createGroup();
+        }
+
         menu(*s);
 
     }

@@ -10,7 +10,7 @@
 
 void run();
 
-std::unique_ptr<IGroupSession> makeSession(int choice, bool product=true);
+std::unique_ptr<IGroupSession> makeSession(int choice);
 
 
 #endif //INTROALGEBRA_RUNMENU_H

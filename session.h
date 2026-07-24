@@ -73,6 +73,7 @@ public:
 
     virtual int order() const = 0;
 
+
     virtual void generateCyclicSubgroup(std::string g) = 0;
 };
 
